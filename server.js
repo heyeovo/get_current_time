@@ -72,7 +72,7 @@ app.get('/sse', async (req, res) => {
 app.post('/messages', async (req, res) => {
   if (transport) {
     try {
-      await transport.handleMessage(req, res);
+      await transport.handlePostMessage(req, res, req.body); // 加上 req.body
     } catch (err) {
       console.error('Message handling error:', err);
       if (!res.headersSent) {
